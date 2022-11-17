@@ -6,14 +6,14 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import lombok.ToString;
-
+//lombok annotation used
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
 @ToString
 public class MyErrorDeatils {
 		
-	private LocalDateTime timestamp;
-	private String message;
-	private String desc;
+	private LocalDateTime timestamp;//localDate ANdTime use
+	private String message;// ErrorMeassage 
+	private String desc;//Description 
 }
