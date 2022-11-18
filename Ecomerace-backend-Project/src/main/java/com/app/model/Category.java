@@ -8,26 +8,19 @@ import javax.persistence.Id;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-
+import lombok.ToString;
 
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-public class Payment {
+@ToString
+public class Category {
+	
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
-	@Column(name="order_id")
-	private Integer payment_id;
+	@Column(name="category_id")
+	private Integer category_id;
 	
-	@Column(name = "order_id")
-	private Order order; 
-	
-	
-	@Column(name="payment_mode_id")
-	private PaymentMode payment_mode;
-	
-	@Column(name ="payment_status")
-	private Boolean payment_status;
-	
-	
+	@Column(name="categoryName")
+	private String categoryName;
 }

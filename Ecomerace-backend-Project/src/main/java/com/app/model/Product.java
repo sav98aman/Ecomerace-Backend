@@ -8,23 +8,32 @@ import javax.persistence.Id;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-public class Feedback {
+public class Product {
 	
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
-	@Column(name="feedback_id")
-	private Integer feedback_id;
-	
 	@Column(name = "product_id")
-	private Product product;
+	private Integer product_id;
 	
-	@Column(name = "rating")
-	private Double rating;
+	@Column(name = "productName")
+	private String ProductName;
 	
-	@Column(name="descrp")
-	private String decrp;
+	@Column(name = "brand")
+	private String brand;
+	
+	@Column(name = "seller_id")
+	private Seller seller;
+	
+	@Column(name="sale_price")
+	private Double sale_price;
+	
+	@Column(name="market_price")
+	private Double market_price;
+	
+	
+	@Column(name="feedback")
+	private Feedback feedback;
 }
