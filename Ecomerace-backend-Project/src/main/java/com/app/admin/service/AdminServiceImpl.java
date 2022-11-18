@@ -1,9 +1,9 @@
-package com.app.adminservice;
+package com.app.admin.service;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.app.adminLevelDao.AdminDao;
+import com.app.admin.Dao.AdminDao;
 import com.app.exception.AdminException;
 import com.app.model.Admin;
 

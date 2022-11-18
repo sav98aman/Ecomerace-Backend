@@ -7,7 +7,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.app.adminservice.AdminServiceImpl;
+import com.app.admin.service.AdminServiceImpl;
 import com.app.exception.AdminException;
 import com.app.model.Admin;
 

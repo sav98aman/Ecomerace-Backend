@@ -1,4 +1,4 @@
-package com.app.adminservice;
+package com.app.admin.service;
 
 import com.app.exception.AdminException;
 import com.app.model.Admin;
