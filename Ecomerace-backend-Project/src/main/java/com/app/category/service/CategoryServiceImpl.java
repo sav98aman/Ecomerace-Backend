@@ -5,19 +5,33 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.app.admin.service.AdminServiceImpl;
 import com.app.category.dao.CategoryDao;
 import com.app.exception.CategoryException;
+import com.app.exception.CurrentUserSessionException;
 import com.app.model.Category;
+import com.app.model.CurrentUserSession;
 
 @Service
 public class CategoryServiceImpl implements CategoryService{
 
 	@Autowired
 	private CategoryDao categoryDao;
+	
+	@Autowired
+	private AdminServiceImpl adminServiceIml;
+	
+	
 	@Override
-	public Category addNewCategory(Category category) throws CategoryException {
+	public Category addNewCategory(String uuid,Category category) throws CategoryException,CurrentUserSessionException {
 		// TODO Auto-generated method stub
+		
+		if(! adminServiceIml.checkLogin(uuid)) {
+			throw new CurrentUserSessionException(" Admin Is Not Login Please Login First ");
+		}
+		
 		Category isExitsCategory=categoryDao.findByCategoryName(category.getCategoryName());
+		
 		if (isExitsCategory != null) {
 			throw new CategoryException("Category Is All reday Exits ");
 			
@@ -25,7 +39,11 @@ public class CategoryServiceImpl implements CategoryService{
 		return categoryDao.save(category);
 	}
 	@Override
-	public String removeCategory(Integer category_id) throws CategoryException {
+	public String removeCategory(String uuid,Integer category_id) throws CategoryException, CurrentUserSessionException {
+		if(! adminServiceIml.checkLogin(uuid)) {
+			throw new CurrentUserSessionException(" Admin Is Not Login Please Login First ");
+		}
+		
 		Category isCategory=(categoryDao.findById(category_id).get());
 		if (isCategory == null) {
 			throw new CategoryException(category_id +" This Category Id Is Not Avilable ");
@@ -35,8 +53,7 @@ public class CategoryServiceImpl implements CategoryService{
 	}
 	@Override
 	public List<Category> viewAllCategory() throws CategoryException {
-		// TODO Auto-generated method stub
-		return null;
+		return categoryDao.findAll();
 	}
 
 }
