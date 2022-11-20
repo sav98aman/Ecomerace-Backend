@@ -11,6 +11,9 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
+
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -28,8 +31,8 @@ public class Seller {
 	@Column(name = "seller_Name")
 	private String seller_Name;
 	
-	@Column(name = "Seller_Mobile")
-	private String Seller_Mobile;
+	@Column(name = "seller_Mobile")
+	private String seller_Mobile;
 	
 	@Embedded
 	@Column(name = "seller_address_id")
@@ -50,6 +53,7 @@ public class Seller {
 			| seller_name   | varchar(255) | YES  |     | NULL    |       |
 			+---------------+--------------+------+-----+---------+-------+
 	 */
+	@JsonIgnore
 	@OneToMany(cascade = CascadeType.ALL,mappedBy = "category")
 	private List<Product> products=new ArrayList<>();
 }
