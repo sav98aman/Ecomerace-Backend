@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>login</title>
+    <Style>
+        *{
+            margin: 0px;
+            padding: 0px;
+        }
+        .loginfrom{
+            border: 1px solid green;
+            width: auto;
+            height: 99.2vh;
+        }
+
+    </Style>
+</head>
+<body>
+    <div class="loginfrom">
+        <div class="loginglayoyt">
+            <input type="text" id="mobile" placeholder="Eter Mobile Number" >
+            <input type="password" name="password" id="pass" placeholder="Enter password">
+            <button id="loginbtn">Login</button>
+        </div>
+    </div>
+</body>
+</html>
+<script>
+
+    document.getElementById("loginbtn").addEventListener("click",loginfunction);
+
+    function loginfunction(){
+        let mobile=document.getElementById("mobile").value;
+        let password=document.getElementById("pass").value;
+        console.log(mobile,password)
+    
+
+
+    fetch('http://localhost:8088/User/login', {
+    method: 'POST',
+    headers: {
+        'Accept': 'application/json',
+        'Content-Type': 'application/json'
+    },
+  
+    body: JSON.stringify({
+    "mobileNo": "7761869852",
+    "password": "12345"
+    })
+    })
+    .then(response => response.json())
+    .then(response => console.log(JSON.stringify(response)))
+
+
+}
+/////////
+// async function fetchText() {
+//     let response = await fetch(url);
+//     console.log(response); // OK
+//     if (response.status === 200) {
+//         let data = await response.json();
+//         // handle data
+//         console.log(data)
+//     }
+// }
+
+// fetchText();
+</script>
