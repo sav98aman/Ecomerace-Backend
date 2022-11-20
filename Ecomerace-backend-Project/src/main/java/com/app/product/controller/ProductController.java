@@ -7,6 +7,7 @@ import javax.websocket.server.PathParam;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -50,5 +51,11 @@ public class ProductController {
 	public ResponseEntity<Product> view_ALl_Product_by_id_Controller_Handlaler(@PathParam(value = "prod_id") Integer prod_id) throws ProductException{
 		Product allProductByName=productserviceimpl.viewProductByid(prod_id);
 		return new ResponseEntity<Product>(allProductByName,HttpStatus.OK);
+	}
+	
+	@DeleteMapping(value = "/delete/{uuid}/{prod_id}")
+	public ResponseEntity<String> remove_Product_by_id_Controller_Handlaler(@PathVariable String uuid,@PathVariable Integer prod_id) throws ProductException, AdminException{
+		String delProduct=productserviceimpl.removeproducts(uuid, prod_id);
+		return new ResponseEntity<String>(delProduct,HttpStatus.OK);
 	}
 }

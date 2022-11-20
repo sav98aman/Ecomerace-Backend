@@ -68,7 +68,7 @@ public class ProductServiceImpl implements ProductService{
 		}
 		
 		Product Isproduct=viewProductByid(product_id);
-		proDao.delete(Isproduct);
+		proDao.deleteById(product_id);
 		
 		return Isproduct.toString();
 		
