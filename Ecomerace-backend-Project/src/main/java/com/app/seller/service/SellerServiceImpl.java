@@ -11,18 +11,18 @@ import com.app.seller.dao.SellerDao;
 public class SellerServiceImpl implements SellerService {
 
 	@Autowired
-	private SellerDao sellerDao;
+	private SellerDao sellerdao;
 	
 	
 	@Override
 	public Seller creatingNewSeller(Seller seller) throws SellerException {
-		// TODO Auto-generated method stub
-		Seller isSeller=sellerDao.findBySeller_Mobile(seller.getSeller_Mobile());
-		if (isSeller != null) {
-			throw new SellerException(" Seller Is All reday Register ");
-		}
+//		// TODO Auto-generated method stub
+//		Seller isSeller=sellerDao.findBySeller_Mobile(seller.getSeller_Mobile());
+//		if (isSeller != null) {
+//			throw new SellerException(" Seller Is All reday Register ");
+//		}
 		
-		return sellerDao.save(seller);
+		return sellerdao.save(seller);
 	}
 
 }
