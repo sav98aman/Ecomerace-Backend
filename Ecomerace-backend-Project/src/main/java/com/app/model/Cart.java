@@ -1,21 +1,21 @@
 package com.app.model;
 
-import java.util.ArrayList;
-import java.util.List;
-
 import javax.persistence.CascadeType;
-
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
-import javax.persistence.OneToMany;
-import javax.persistence.OneToOne;
+
+import com.fasterxml.jackson.annotation.JsonAlias;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+
+
 @Entity
 @Data
 @NoArgsConstructor
@@ -25,11 +25,12 @@ public class Cart {
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private Integer cart_id;
-	
-	@ManyToOne(cascade = CascadeType.ALL)
+	@Column(name="qyt")
+	private Integer qyt;
+	@JsonIgnore
+	@ManyToOne(cascade = CascadeType.MERGE)
 	private User user;
 	
-	
-	@OneToMany(cascade = CascadeType.ALL)
-	private List<Product> product =new ArrayList<>();
+	@ManyToOne(cascade = CascadeType.MERGE)
+	private Product product;
 }
