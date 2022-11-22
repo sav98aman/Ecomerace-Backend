@@ -1,5 +1,7 @@
 package com.app.orders.service;
 
+import java.util.List;
+
 import javax.persistence.criteria.Order;
 
 import com.app.exception.CartException;
@@ -11,5 +13,6 @@ import com.app.model.Orders;
 public interface OrdersService {
 
 	//order through cart
-	public Orders creatingnewOrder(String uuid,Cart cart)throws CartException,UserException,CurrentUserSessionException;
+	public Orders creatingnewOrder(String uuid)throws CartException,UserException,CurrentUserSessionException;
+	public List<Orders> findTheListOfOrders(String uuid) throws CartException,UserException,CurrentUserSessionException;
 }

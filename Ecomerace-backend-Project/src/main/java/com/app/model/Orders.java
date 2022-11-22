@@ -12,6 +12,9 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
+
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -28,10 +31,11 @@ public class Orders {
 	@Column(name="oder_id")
 	private Integer order_id;
 
+	@JsonIgnore
 	@ManyToOne(cascade = CascadeType.ALL)
 	private User user;
 	
-	
+	@JsonIgnore
 	@ManyToMany(cascade = CascadeType.ALL)
 	private List<Product> product=new ArrayList<>();
 	
