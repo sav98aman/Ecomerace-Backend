@@ -9,6 +9,7 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
@@ -56,6 +57,10 @@ public class Product {
 	
 	@OneToMany(cascade = CascadeType.ALL,mappedBy = "product")
 	private List<Feedback> feedback=new ArrayList<>();
+	
+	
+	@ManyToMany(cascade = CascadeType.MERGE,mappedBy = "product")
+	private List<Orders> orders=new ArrayList<>();
 	
 	/*
 	 * product table 
