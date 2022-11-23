@@ -13,6 +13,6 @@ import com.app.model.Orders;
 public interface OrdersService {
 
 	//order through cart
-	public Orders creatingnewOrder(String uuid)throws CartException,UserException,CurrentUserSessionException;
+	public List<Orders> creatingnewOrder(String uuid)throws CartException,UserException,CurrentUserSessionException;
 	public List<Orders> findTheListOfOrders(String uuid) throws CartException,UserException,CurrentUserSessionException;
 }

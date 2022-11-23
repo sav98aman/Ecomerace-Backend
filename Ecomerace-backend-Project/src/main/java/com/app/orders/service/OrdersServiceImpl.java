@@ -35,27 +35,30 @@ public class OrdersServiceImpl implements OrdersService {
 	private CartDao cartdao;
 	
 	@Override
-	public Orders creatingnewOrder(String uuid) throws CartException, UserException, CurrentUserSessionException {
+	public List<Orders> creatingnewOrder(String uuid) throws CartException, UserException, CurrentUserSessionException {
 		 CurrentUserSession currentusersession=currentuserserviceimpl.findCurrentUserSession(uuid);
 		 User user =userdao.findById(currentusersession.getUser_id()).get();
-		List<Cart> lisofcart=cartdao.findByUser(user);
+		 List<Cart> lisofcart=cartdao.findByUser(user);
+		 
 		if (lisofcart == null) {
 			throw new CartException(" Cart Is Empty let Sphopinf First ");
 		}
 		 List<Product> listOfProduct=new ArrayList<>();
 		 for (Cart cart2 : lisofcart) {
-			listOfProduct.add(cart2.getProduct());//adding all cart product to List of Product
+//			listOfProduct.add(cart2.getProduct());//adding all cart product to List of Product
+			 Orders orders=new Orders();
+			 orders.setProduct(cart2.getProduct());
+			 orders.setUser(user);
+			 orders.setOrder_date(LocalDate.now());
+			 orders.setOrder_status(false);
+			 orders.setPayment_status(false); 
+			 orderDao.save(orders); 
 		 }
 		 
-		 Orders orders=new Orders();
-		 orders.setProduct(listOfProduct);
-		 orders.setUser(user);
-		 orders.setOrder_date(LocalDate.now());
-		 orders.setOrder_status(false);
-		 orders.setPayment_status(false);
-
 		 
-		return orderDao.save(orders);
+		 
+		 return findTheListOfOrders(uuid);
+		 
 	}
 
 	@Override
