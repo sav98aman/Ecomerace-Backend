@@ -9,6 +9,6 @@ import com.app.model.PaymentMode;
 @Repository
 public interface PaymentModeDao extends JpaRepository<PaymentMode, Integer>{
 	
-	@Query("SELECT p FROM PaymentMode p WHERE p.paymentModeName=:1")
-	public PaymentMode findByPaymentModeName(String paymentModeName);
+//	@Query("SELECT c FROM PaymentMode c WHERE c.paymentModeName=?1")
+//	public PaymentMode findByPaymentModeName(String paymentModeName);
 }

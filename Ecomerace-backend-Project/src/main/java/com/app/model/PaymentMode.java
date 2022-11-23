@@ -20,7 +20,7 @@ public class PaymentMode {
 	@Column(name = "payment_mode_id")
 	private Integer payment_mode_id;
 	
-	@Column(name = "payment_mode_name")
+	@Column(name = "PaymentModeName")
 	private String PaymentModeName;
 	
 	
