@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Products</title>
+    <style>
+        #productdata{
+            display: grid;
+            grid-template-columns: repeat(4,1fr);
+            grid-template-rows: auto;
+            gap: 10px;
+
+        }
+        .card:hover{
+            background-color: beige;
+        }
+        .card{
+            border: 1px solid red;
+            
+        }.btn:hover{
+            cursor: pointer;
+            background-color: aqua;
+        }
+    </style>
+</head>
+<body>
+    <div id="product" class="containar">
+        <div id="productdata" class="data">
+            Hii data
+        </div>
+    </div>
+</body>
+</html>
+<script>
+    console.log("data");
+    let url="http://localhost:8088/product/viewAll/";
+    
+    
+    function display(data){
+        let maindiv=document.querySelector("#productdata");
+        maindiv.innerHTML=null;
+        data.forEach(ele=> {
+            let card=document.createElement("div");
+            let pname=document.createElement("p");
+            let pbrandname=document.createElement("p");
+            let pcategory=document.createElement("p");
+            let PSalePrice=document.createElement("p");
+            let pmarketprice=document.createElement("p");
+            let pQyt=document.createElement("p");
+
+            let btncard=document.createElement("div");
+
+            let buybtn=document.createElement("button");
+            let addtocart=document.createElement("button");
+
+            buybtn.innerText="Buy";
+            addtocart.innerText="Add TO cart";
+            btncard.append(addtocart,buybtn);
+            btncard.setAttribute("id","btncard");
+            buybtn.setAttribute("id","buy");
+            addtocart.setAttribute("id","addtocart");
+
+            buybtn.setAttribute("class","btn");
+            addtocart.setAttribute("class","btn");
+
+            // addtocart.addEventListener("click",addtocart)
+
+            addtocart.addEventListener("click",function(){
+                addtocartlist(ele)
+        })
+
+            pname.innerText=ele.productName;
+            pbrandname.innerText=ele.brand;
+            pcategory.innerText=ele.category.categoryName;
+            PSalePrice.innerText=ele.sale_price;
+            pmarketprice.innerText=ele.market_price;
+            pQyt.innerText=ele.quantity;
+
+            pcategory.innerText=ele.category.categoryName;
+            card.append(pname,pbrandname,pcategory,PSalePrice,pmarketprice,pQyt,btncard)
+
+            // card.setAttribute("id",ele.product_id);
+            card.setAttribute("class","card")
+            maindiv.append(card);
+
+        });
+    }
+    async function fetchText() {
+    let response = await fetch(url);
+    console.log(response); // OK
+        if (response.status === 200) {
+            let data = await response.json();
+            // handle data
+            display(data);
+        }
+    }
+    fetchText();
+    function addtocartlist(ele,index){
+        console.log(ele)
+    }
+</script>
