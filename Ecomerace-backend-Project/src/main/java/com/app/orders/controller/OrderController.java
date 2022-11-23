@@ -25,11 +25,11 @@ public class OrderController {
 	private OrdersServiceImpl orderserviceimpl;
 	
 	@PostMapping(value = "/order/{uuid}")
-	public ResponseEntity<Orders> creating_Order(@PathVariable String uuid) throws CartException, UserException, CurrentUserSessionException{
-		Orders order=orderserviceimpl.creatingnewOrder(uuid);
-		return new ResponseEntity<Orders>(order,HttpStatus.ACCEPTED);
+	public ResponseEntity<List<Orders>> creating_Order(@PathVariable String uuid) throws CartException, UserException, CurrentUserSessionException{
+		List<Orders> order=orderserviceimpl.creatingnewOrder(uuid);
+		return new ResponseEntity<List<Orders>>(order,HttpStatus.ACCEPTED);
 	}
-	
+//	
 	@GetMapping(value = "/order/{uuid}")
 	public ResponseEntity<List<Orders>> getting_all_b_USer_Order(@PathVariable String uuid) throws CartException, UserException, CurrentUserSessionException{
 		List<Orders> order=orderserviceimpl.findTheListOfOrders(uuid);
