@@ -59,8 +59,8 @@ public class Product {
 	private List<Feedback> feedback=new ArrayList<>();
 	
 	
-	@ManyToMany(cascade = CascadeType.MERGE,mappedBy = "product")
-	private List<Orders> orders=new ArrayList<>();
+//	@ManyToOne(cascade = CascadeType.ALL)
+//	private Orders orders;
 	
 	/*
 	 * product table 

@@ -35,9 +35,9 @@ public class Orders {
 	@ManyToOne(cascade = CascadeType.ALL)
 	private User user;
 	
-	@JsonIgnore
-	@ManyToMany(cascade = CascadeType.ALL)
-	private List<Product> product=new ArrayList<>();
+//	@JsonIgnore
+	@ManyToOne(cascade = CascadeType.ALL)
+	private Product product;
 	
 	
 	@Column(name = "order_date")
